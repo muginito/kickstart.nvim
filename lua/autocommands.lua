@@ -11,3 +11,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex', 'plaintex' },
+  callback = function()
+    vim.keymap.set('i', '<C-A-m>', '\\[\\]<Left><Left>', { buffer = true })
+    vim.keymap.set('i', '<C-A-l>', '$$<Left>', { buffer = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex', 'plaintex', 'markdown' },
+  callback = function()
+    vim.o.spell = true
+  end,
+})
